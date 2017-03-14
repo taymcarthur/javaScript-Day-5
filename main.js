@@ -1,49 +1,50 @@
 $(document).ready(function(){
-  $.getJSON('http://json-data.herokuapp.com/forms', function(formData){
-    //ALL CODE GOES HERE
-    //FORMDATA VARIABLE INCLUDES ALL OF THE FORM INFORMATION YOU NEED
-    //How to insert variable into string: with nopostrophies `${asdk}
-
-    var formHTML = ''
-
+  $.getJSON('http://json-data.herokuapp.com/forms', function(formData){ 
+	//this creates a function with an api link to grab from which is called with the variable you placed in after the function.	  
+    var formHTML = "" //this creates an empty string which is then replaced with whatever you put in it in the function below
+	
     formData.forEach(function(field){
-      formHTML += `<i class="fa ${field.icon}"><input type="${field.type}" placeholder="${field.label}" id="${field.id}" />`
-    })
+      if(field.type === 'text' || field.type ==='email' || field.type === 'tel') {
+      	formHTML += `i class="fa ${field.icon}" aria-hidden="true"></i><input type="${field.type}" placeholder="${field.label}" id="${field.id}" />`
+      }
 
-    $(".form").html(formHTML)
-  })
+      if {field.type === 'select') {
+    	formHTML += `<select id="${field.id}">
+    	<option value=''>${field.label}</option>`
+
+    	field.options.forEach{function(option) {
+    		formHTML += `<option value="${option.value}">${option.label}</option>`
+    	})
+
+    	formHTML += '</select>'
+    }
+
+    if (field.type === 'textarea') {
+    	formHTML += `<i class="fa ${field.icon}" aria-hidden="true"></i><textarea id="${field.id}" placeholder="${field.label}"></textarea>`
+    }
+
+   }}
+
+   $("#app").html(formHTML)
+   })
+})
+}
 
 
+//       	formHTML += `<i class="fa ${field.icon}"><textarea placeholder="${field.label}"></textarea>`
+//       } else if (field.type === 'text' || field.type ==='email' || field.type === 'tel') {
+//       	formHTML += `<i class="fa ${field.icon}"><input placeholder="${field.label}"></input>
+//       }else if(field.type ==='select'){  
+//         formHTML += `<select form='${field.id}'>
+//         <option selected="selected">${field.label}...</option>`
+//         field.options.forEach(function(lang){
+//           formHTML += `<option value="${lang.value}">${lang.label}</option>`
+//           })
+//       }	else {
+//       formHTML += `<i class="fa ${field.icon}"><input type="${field.type}" placeholder="${field.label}" id="${field.id}" />`
+//       }
+//   			 //so this uses the callback with the forEach function to loop through the array - then you throw another variable in it to call to loop through the data - then formHTML =+ `` then replaces the empty string you created with whatever you put in the nopostrophes. then whatever goes in ${}. ie field.label goes through the data and finds label and returns that data
+// 		})
+// 	$("#app").html(formHTML)
+// 	})
 // })
-// function createTable()
-// {
-//     var num_rows = document.getElementById('rows').value;
-//     var num_cols = document.getElementById('cols').value;
-//     var theader = '<table border="1">\n';
-//     var tbody = '';
-
-//     for( var i=0; i<num_rows;i++)
-//     {
-//         tbody += '<tr>';
-//         for( var j=0; j<num_cols;j++)
-//         {
-//             tbody += '<td>';
-//             tbody += 'Cell ' + i + ',' + j;
-//             tbody += '</td>'
-//         }
-//         tbody += '</tr>\n';
-//     }
-//     var tfooter = '</table>';
-//     document.getElementById('wrapper').innerHTML = theader + tbody + tfooter;
-// }
-// </script>
-// </head>
-
-// <body>
-// <form name="tablegen">
-// <label>Rows: <input type="text" name="rows" id="rows"/></label><br />
-// <label>Cols: <input type="text" name="cols" id="cols"/></label><br/>
-// <input name="generate" type="button" value="Create Table!" onclick='createTable();'/>
-// </form>
-
-// <div id="wrapper"></div>
