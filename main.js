@@ -5,7 +5,7 @@ $(document).ready(function(){
 	
     formData.forEach(function(field){
       if(field.type === 'text' || field.type ==='email' || field.type === 'tel') {
-      	formHTML += `i class="fa ${field.icon}" aria-hidden="true"></i><input type="${field.type}" placeholder="${field.label}" id="${field.id}" />`
+      	formHTML += `<i class="fa ${field.icon}" aria-hidden="true"></i><input type="${field.type}" placeholder="${field.label}" id="${field.id}" />`
       }
 
       if (field.type === 'select') {
