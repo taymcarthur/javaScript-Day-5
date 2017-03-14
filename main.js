@@ -8,11 +8,11 @@ $(document).ready(function(){
       	formHTML += `i class="fa ${field.icon}" aria-hidden="true"></i><input type="${field.type}" placeholder="${field.label}" id="${field.id}" />`
       }
 
-      if {field.type === 'select') {
+      if (field.type === 'select') {
     	formHTML += `<select id="${field.id}">
     	<option value=''>${field.label}</option>`
 
-    	field.options.forEach{function(option) {
+    	field.options.forEach(function(option) {
     		formHTML += `<option value="${option.value}">${option.label}</option>`
     	})
 
@@ -23,12 +23,12 @@ $(document).ready(function(){
     	formHTML += `<i class="fa ${field.icon}" aria-hidden="true"></i><textarea id="${field.id}" placeholder="${field.label}"></textarea>`
     }
 
-   }}
+   })
 
    $("#app").html(formHTML)
    })
 })
-}
+
 
 
 //       	formHTML += `<i class="fa ${field.icon}"><textarea placeholder="${field.label}"></textarea>`
